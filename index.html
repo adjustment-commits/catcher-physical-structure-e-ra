@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>選手評価シート｜捕手（社会人代表候補）｜adjustment-field</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#00b386">
+<meta name="description" content="捕手（社会人代表候補）の構造評価にもとづく選手評価シート。足趾・足関節・下腿・連動経路を整理し、介入によるメリットとデメリットを可視化。">
+<style>
+:root {
+  --bg:#f8faf9;
+  --text:#1a1a1a;
+  --sub:#555;
+  --accent:#00b386;
+  --card:#ffffff;
+  --line:rgba(0,0,0,0.08);
+  --danger:#cc3333;
+  --muted:#888;
+  font-family:'Noto Sans JP', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+box-sizing:border-box;
+}
+
+body {
+margin:0;
+padding:0;
+background:var(--bg);
+color:var(--text);
+text-rendering:optimizeLegibility;
+-webkit-font-smoothing:antialiased;
+}
+
+.page {
+max-width:960px;
+margin:0 auto;
+padding:16px 16px 40px;
+}
+
+header {
+padding:8px 0 16px;
+border-bottom:1px solid var(--line);
+margin-bottom:16px;
+}
+
+.header-label {
+font-size:12px;
+letter-spacing:0.12em;
+text-transform:uppercase;
+color:var(--muted);
+}
+
+h1 {
+font-size:20px;
+margin:4px 0 4px;
+}
+
+.header-sub {
+font-size:13px;
+color:var(--sub);
+}
+
+.tag-row {
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:8px;
+}
+
+.tag {
+font-size:11px;
+padding:4px 8px;
+border-radius:999px;
+border:1px solid var(--line);
+background:#ffffff;
+}
+
+.tag–pos {
+border-color:var(--accent);
+color:var(--accent);
+}
+
+.main-grid {
+display:grid;
+grid-template-columns:1.5fr 1fr;
+gap:16px;
+margin-top:16px;
+}
+
+@media (max-width:768px) {
+.main-grid {
+grid-template-columns:1fr;
+}
+}
+
+.card {
+background:var(–card);
+border-radius:12px;
+padding:16px;
+box-shadow:0 2px 6px rgba(0,0,0,0.03);
+border:1px solid var(--line);
+margin-bottom:12px;
+}
+
+.card h2 {
+font-size:14px;
+margin:0 0 8px;
+letter-spacing:0.06em;
+text-transform:uppercase;
+color:var(--sub);
+}
+
+.card h3 {
+font-size:13px;
+margin:12px 0 4px;
+}
+
+.card p {
+font-size:13px;
+margin:4px 0;
+}
+
+.card ul {
+margin:4px 0 4px 18px;
+padding:0;
+}
+
+.card li {
+font-size:13px;
+margin:2px 0;
+}
+
+.small-label {
+font-size:11px;
+font-weight:700;
+color:var(--sub);
+letter-spacing:0.12em;
+text-transform:uppercase;
+}
+
+.info-list {
+font-size:13px;
+margin:0;
+padding:0;
+list-style:none;
+}
+
+.info-list li {
+margin:2px 0;
+}
+
+.info-label {
+display:inline-block;
+min-width:5em;
+color:var(--sub);
+}
+
+.badge-type {
+display:inline-flex;
+align-items:center;
+gap:6px;
+font-size:12px;
+margin-top:6px;
+padding:4px 8px;
+border-radius:999px;
+border:1px dashed var(--accent);
+color:var(--accent);
+background:rgba(0,179,134,0.04);
+}
+
+.badge-dot {
+width:6px;
+height:6px;
+border-radius:50%;
+background:var(--accent);
+}
+
+.section-divider {
+height:1px;
+background:var(--line);
+margin:16px 0;
+}
+
+.highlight-box {
+border-radius:10px;
+padding:10px 12px;
+background:rgba(0,179,134,0.06);
+border:1px dashed var(--accent);
+font-size:13px;
+}
+
+.highlight-title {
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:0.12em;
+color:var(--accent);
+margin-bottom:4px;
+}
+
+.layout-column {
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.pill-list {
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+margin-top:4px;
+}
+
+.pill {
+font-size:11px;
+padding:3px 8px;
+border-radius:999px;
+background:rgba(0,0,0,0.03);
+}
+
+.badge-risk {
+display:inline-flex;
+align-items:center;
+gap:6px;
+font-size:11px;
+padding:3px 8px;
+border-radius:999px;
+border:1px solid rgba(204,51,51,0.2);
+color:var(--danger);
+background:rgba(204,51,51,0.03);
+}
+
+.muted {
+color:var(--muted);
+font-size:12px;
+}
+
+.section-title-row {
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:8px;
+}
+
+.section-title-row .muted {
+margin:0;
+}
+
+ul.compact {
+margin-top:2px;
+}
+
+ul.compact li {
+margin:0;
+}
+</style>
+
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="header-label">PLAYER EVALUATION SHEET</div>
+    <h1>捕手（社会人代表候補）｜構造評価シート</h1>
+    <div class="header-sub">足趾優位 × 足関節機能低下タイプ／腰背部の慢性張りを訴えるケース</div>
+    <div class="tag-row">
+      <span class="tag tag--pos">Catcher</span>
+      <span class="tag">社会人代表候補</span>
+      <span class="tag">構造バイアス評価</span>
+      <span class="tag">腰背部コンディション</span>
+    </div>
+  </header>
+  <div class="main-grid">
+<!-- 左カラム：基本情報＋構造評価＋動作影響 -->
+<div>
+
+  <div class="card">
+    <div class="section-title-row">
+      <h2>基本情報</h2>
+    </div>
+    <ul class="info-list">
+      <li><span class="info-label">ポジション</span>捕手（社会人代表候補）</li>
+      <li><span class="info-label">主訴</span>常に腰背部の張りを感じている</li>
+      <li><span class="info-label">自覚課題</span>ふくらはぎが他部位と比べて細く、下腿出力が弱いと感じている</li>
+    </ul>
+    <div class="badge-type">
+      <span class="badge-dot"></span>
+      <span>末端性能高 × 伝達ライン詰まりタイプ</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>構造評価</h2>
+
+    <h3>● 足趾</h3>
+    <ul>
+      <li>巧緻性・コントロール能力が非常に高い</li>
+      <li>地面反力を「足趾の点」で受け止める傾向が強い</li>
+      <li>末端でブレーキ・制御を完結させる癖が疑われる</li>
+    </ul>
+
+    <h3>● 足関節（底屈・背屈）</h3>
+    <ul>
+      <li>底屈・背屈ともに可動域が著しく低い</li>
+      <li>距骨の滑走不足が疑われる（前後・内外の滑りが乏しい）</li>
+      <li>可動域だけでなく、底屈・背屈の出力も低い</li>
+      <li>足趾の性能に見合う「柄（下腿）のしなり」が不足</li>
+    </ul>
+
+    <h3>● 下腿（ふくらはぎ）</h3>
+    <ul>
+      <li>体格・ポジションに対して「細く見える」レベル</li>
+      <li>ヒラメ筋・後脛骨筋など深層筋の“容量”を使っていない動き方</li>
+      <li>ジャンプ・切り返しなどで膝下のバネを十分に使えていない可能性</li>
+    </ul>
+
+    <h3>● 連動経路</h3>
+    <p>想定される理想経路：</p>
+    <ul class="compact">
+      <li>足底（面） → 距骨滑走 → 踵骨・下腿 → 骨盤 → 体幹</li>
+    </ul>
+    <p>現状の推定経路：</p>
+    <ul class="compact">
+      <li>足趾（点）で制御 → 足関節が動かない → 反力が腰背部へ一極集中</li>
+    </ul>
+    <p class="muted">結果として、腰背部の慢性的な張り・過使用に直結していると考えられる。</p>
+  </div>
+
+  <div class="card">
+    <h2>動作への影響（ポジション別の読み取り）</h2>
+
+    <h3>● 構え</h3>
+    <ul>
+      <li>低い構え自体は可能で、見た目の安定感も高い</li>
+      <li>しかし「足底の面」でなく「足趾の点」で支えているため、負荷が腰背部へ集中</li>
+      <li>長時間の構えで腰背部の張りが増大しやすい</li>
+    </ul>
+
+    <h3>● 移動・反応</h3>
+    <ul>
+      <li>反応速度そのものは高いが、足関節の入力が薄く“余白のない動き”になりやすい</li>
+      <li>左右への初動で、足関節のしなりが使えず、膝・腰で一気に動き出すパターンが多いと推定</li>
+    </ul>
+
+    <h3>● ブロッキング</h3>
+    <ul>
+      <li>踏み出し位置が微妙にズレやすい（足関節での微調整が効かないため）</li>
+      <li>ボールを止める際に体幹・腰背部で受ける割合が大きく、疲労蓄積リスクが高い</li>
+    </ul>
+
+    <h3>● スロー（送球）</h3>
+    <ul>
+      <li>足関節 → 骨盤 → 胸郭の“縦の流れ”が途中で詰まりやすい</li>
+      <li>肩肘に負荷が乗りやすく、コンディション悪化時には送球精度が乱れやすい</li>
+      <li>日によってリリースポイントが安定しない可能性</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- 右カラム：総合評価＋メリット/デメリット＋介入方針 -->
+<div class="layout-column">
+
+  <div class="card">
+    <h2>総合評価（構造タイプの整理）</h2>
+    <div class="highlight-box">
+      <div class="highlight-title">構造タイプ要約</div>
+      <p>足趾という高性能な末端センサーを持ちながら、足関節〜下腿〜骨盤への伝達ラインが詰まっているタイプ。</p>
+      <p>魅力的な捕手能力を持つ一方で、構造バイアスによってパフォーマンスとコンディションが制限されている「もったいない」構造と評価できる。</p>
+    </div>
+    <div class="pill-list">
+      <span class="pill">末端性能：高い</span>
+      <span class="pill">伝達ライン：弱い</span>
+      <span class="pill">上位構造：過剰代償</span>
+      <span class="pill">腰背部負担：高い</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title-row">
+      <h2>介入によるメリット</h2>
+      <p class="muted">※適切な時期・ボリュームで実施した場合</p>
+    </div>
+
+    <h3>① 腰背部の張りの軽減</h3>
+    <ul>
+      <li>反力を下腿〜骨盤で分散できるようになり、腰背部の慢性張りが大幅に減少</li>
+      <li>シーズン後半までコンディションを維持しやすくなる</li>
+    </ul>
+
+    <h3>② 低い位置での反応速度向上</h3>
+    <ul>
+      <li>地面情報の入力経路が復活し、初動・ブロッキングの反応が滑らかかつ速くなる</li>
+    </ul>
+
+    <h3>③ 切り返しとステップの質向上</h3>
+    <ul>
+      <li>ヒラメ筋・後脛骨筋の「深い伸び縮み」が再稼働し、構え→移動→スローの“間”の動きが整う</li>
+    </ul>
+
+    <h3>④ 送球の再現性向上</h3>
+    <ul>
+      <li>足関節 → 骨盤 → 上半身の縦の流れが成立し、リリースのズレが減少</li>
+      <li>肩肘への負荷集中も軽減する可能性</li>
+    </ul>
+
+    <h3>⑤ シーズン後半の失速リスク減</h3>
+    <ul>
+      <li>腰背部への過使用が減ることで、痛みへの移行リスクが低下</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="section-title-row">
+      <h2>介入に伴うデメリット／過渡期の現象</h2>
+      <span class="badge-risk">リスク管理ポイント</span>
+    </div>
+
+    <h3>① 一時的な動作の不安定化</h3>
+    <ul>
+      <li>新たな運動経路を構築する過程で、2〜14日程度「違和感」の期間が生じやすい</li>
+      <li>構えの高さや踏み出し感覚が変わる可能性がある</li>
+    </ul>
+
+    <h3>② 下腿の筋肉痛・張り</h3>
+    <ul>
+      <li>長期間あまり使ってこなかったヒラメ筋・後脛骨筋を動員するため、一時的に筋肉痛が強く出ることがある</li>
+    </ul>
+
+    <h3>③ 送球リズムの変化</h3>
+    <ul>
+      <li>骨盤の送り速度が変わることで、1週間前後はリリースタイミングの調整が必要になる可能性</li>
+      <li>公式戦直前の大規模介入は避けるべきポイント</li>
+    </ul>
+
+    <h3>④ 心理的な違和感・不安</h3>
+    <ul>
+      <li>足趾で制御してきた長年の癖が変わるため、選手本人が「今までと違う感覚」に戸惑う可能性</li>
+      <li>事前に「変化の意味」と「過渡期の揺れ」を言語化して共有しておくことが重要</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>介入方針（概要設計）</h2>
+    <p class="muted">※詳細ドリル・メニューは別シートで設計</p>
+    <ul>
+      <li>① 距骨の滑走改善（前後・内外）</li>
+      <li>② 背屈容量の拡張（ヒラメ筋中心の伸び縮み教育）</li>
+      <li>③ 足底の「面」で受ける感覚教育（足趾の過使用制御）</li>
+      <li>④ 反力を骨盤へ繋ぐラインの再構築</li>
+      <li>⑤ 捕手動作（構え・移動・ブロッキング・送球）への転写トレーニング</li>
+    </ul>
+    <p class="muted">オフ期は構造から踏み込んだ介入、シーズン中は負荷とタイミングを限定した「微調整」にとどめる運用が望ましい。</p>
+  </div>
+
+</div>  </div>
+</div>
+</body>
+</html>
